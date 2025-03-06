@@ -1,0 +1,54 @@
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Confirmacion con jQuery</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>   
+        <script>
+            //---------Funcion que obtiene parametros de la url---------//
+            function getQueryVariable(variable) {
+                var query = window.location.search.substring(1);
+                var vars = query.split("&");
+                for (var i=0; i < vars.length; i++) {
+                    var pair = vars[i].split("=");
+                    if(pair[0] == variable) {
+                        return pair[1];
+                    }
+                }
+                return false;
+            } 
+
+            var id=getQueryVariable('id');
+            var clientTxId=getQueryVariable('clientTransactionId');
+
+            $(document).ready(function() {
+                $.ajax({
+                    url: "https://pay.payphonetodoesposible.com/api/button/V2/Confirm",
+                    type: "POST",
+                    headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer frd5_Cy4rRIKjGOhEL2xDL5DK9P1eZATAFrRA15c9-sUv_RY1dTlaHxVU_ZYsnZVd3LrXS72k4V0LYe3LL9Zs7o7yVIGYLdCB0B_1QMD1m11q6iHhjqTx7ne9MkI2C-BaupAuL_EwoW0VXZfuca2x6LCkGTNvy6QHJPSKg64ydhkpIgoq8g6t4zYs0sqOZxc6F0-ukxjkKKAdfnrcmW8G_Epl8Yrc40Rv-uuJLlnMC5R48xQ3l2u5gkFBIxBNT-2wPcr5XddwWgxF1L9yrV6_zeLrqrW_ytO-5TxuLmqEIccUNjHPKuHlDRrFid8O36Zat0EQA"
+                    },
+                    data: JSON.stringify({ 
+                        "id": id,
+                        "clientTxId": clientTxId
+                    }),
+                    success: function(response) {
+                        $("#resultado").html(
+                            "Respuesta : <pre>" + JSON.stringify(response, null, 2) + "</pre>"
+                        );
+                    },
+                    error: function(error) {
+                        $("#resultado").html(
+                            "Error en la solicitud : <pre>" + JSON.stringify(error, null, 2) + "</pre>"
+                        );
+                    }
+                });
+            });
+        </script>
+    </head>    
+    <body>
+        <h1>Ejemplo de Solicitud POST con jQuery</h1>
+        <div id="resultado"></div>
+    
+    </body>
+</html>
