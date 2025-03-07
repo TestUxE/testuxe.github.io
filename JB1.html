@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.payphonetodoesposible.com/box/v1.1/payphone-payment-box.js" type="module" ></script>
+    <link href="https://cdn.payphonetodoesposible.com/box/v1.1/payphone-payment-box.css" rel="stylesheet" >
+</head>
+<body>
+    <script>
+       window.addEventListener('DOMContentLoaded',()=>{
+           var id = "id" + Math.random().toString(16).slice(2);
+           
+            ppb = new PPaymentButtonBox({
+                token: 'yhYbrcx1D5r3xIvpISO8NRxSmIiGl2V85dYBN4Kz65ohM1hTzD8pyVh1yRmwefTCdfyZCfbgR2AaX8ithyZzuUuKiWJh_NfPG95hpRc7uXffzRGTWB6EIoh_Tvu2IXmqSL2Uk44P1Va2wOo7H_u1p-Pq3W1smBTIn1Nhm4F5BAmxGa2oWBOa6C3Y6O52Baa4UPuYROo6Ln0GUCn6-tR5Po-QvzL-UiR6c8JXxFP7jShC_7uMdxm0ob48B5XRGYRPgJR3n6qAcDhlHlzYYh980pGpN87vYHF_HN_ZNrRqUeqZJvbfCK3xVqqCLoN4e-MRoWaRX82rjRey1pfnNXz8uDLL4gE',	
+                clientTransactionId: id, 	
+                amount: 315, 	
+                amountWithoutTax: 200, 	
+                amountWithTax:100, 	
+                tax: 15,	
+                currency: "USD",	
+                storeId:"b91e24f5-c86f-44e0-9210-5457a167ff15", 
+                reference:"PruebaIII-Push Notification" 	           
+            }).render('pp-button');
+        })
+    </script>
+    <div id="pp-button"></div>
+</body>
+</html>
